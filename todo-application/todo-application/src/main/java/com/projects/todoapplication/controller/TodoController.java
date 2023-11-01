@@ -8,6 +8,6 @@ public class TodoController {
 
     public String getAllTodos()
     {
-        return "munna";
+        return "kanna";
     }
 }
