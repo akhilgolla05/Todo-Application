@@ -13,3 +13,6 @@ export const retrieveTodos = ()=>
 
 export const deleteTodoApi = (id)=>
     apiClient.delete(`/todos/mohanmandi/${id}`)
+
+export const createTodoApi = (todo) =>
+    apiClient.post("/todos",todo)

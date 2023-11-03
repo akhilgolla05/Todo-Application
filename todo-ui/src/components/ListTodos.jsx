@@ -5,10 +5,13 @@ import { useEffect } from 'react'
 import { retrieveTodos , deleteTodoApi} from '../services/ApiServices'
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const ListTodos = () => {
 
   const [todos, setTodos] = useState([])
+
+
 
   useEffect(
      ()=>{refreshTodos()},[]
@@ -42,7 +45,9 @@ const ListTodos = () => {
   return (
     <div className="max-w-2xl mx-auto mt-20 shadow">
       <div>
-        <button className="bg-green-500 rounded px-2 py-2 my-2">Add Todo</button>
+        <button className="bg-green-500 rounded px-2 py-2 my-2">
+          <Link to="/add">Add Todo</Link>
+        </button>
       </div>
 
       <div>
