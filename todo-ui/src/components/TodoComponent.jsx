@@ -7,11 +7,24 @@ import NavBar from './NavBar'
 import ListTodos from './ListTodos'
 import LogoutComponent from './LogoutComponent'
 import ErrorComponent from './ErrorComponent'
-import AuthProvider from '../security/AuthProvider'
+import AuthProvider, { useAuth } from '../security/AuthProvider'
 import AddTodo from './AddTodo'
 import EditEmployee from './EditEmployee'
+import { Navigate } from 'react-router-dom'
+
+export const AuthenticatedRoute = ({children})=>{
+
+  const context = useAuth()
+  if(context.isAuthenticated)
+      return children
+  return <Navigate to="/"/>
+
+}
 
 const TodoComponent = () => {
+
+    
+
   return (
     <>
     <AuthProvider>
@@ -21,13 +34,36 @@ const TodoComponent = () => {
                 <Route index element={<LoginComponent/>}/>
                 <Route path="/" element={<LoginComponent/>}/>
                 <Route path="/login" element={<LoginComponent/>}/>
-                <Route path="/welcome/:username" element={<WelcomeComponent/>}/>
-                <Route path="/todos" element={<ListTodos/>}/>
-                <Route path="/add" element={<AddTodo/>}/>
-                <Route path="/updateTodo/:id" element={<EditEmployee/>}/>
-                <Route path="/logout" element={<LogoutComponent/>}/>
+                <Route path="/welcome/:username" element={
                 
-                <Route path="*" element={<ErrorComponent/>}/>
+                <AuthenticatedRoute>
+                    <WelcomeComponent/>
+                </AuthenticatedRoute>
+                }/>
+                <Route path="/todos" element={
+                
+                <AuthenticatedRoute>
+                  <ListTodos/> 
+                </AuthenticatedRoute>
+                }/>
+                <Route path="/add" element={
+                <AddTodo/>}/>
+                <Route path="/updateTodo/:id" element={
+                <AuthenticatedRoute>
+                    <EditEmployee/>
+                </AuthenticatedRoute>
+                }/>
+                <Route path="/logout" element={
+                <AuthenticatedRoute>
+                    <LogoutComponent/>
+                </AuthenticatedRoute>
+                }/>
+                
+                <Route path="*" element={
+                <AuthenticatedRoute>
+                    <ErrorComponent/>
+                </AuthenticatedRoute>
+                }/>
             </Routes>
         </BrowserRouter>
     </AuthProvider>

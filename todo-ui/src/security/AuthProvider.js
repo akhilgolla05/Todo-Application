@@ -2,8 +2,11 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 
+
 //creating a context
 const AuthContext =  createContext()
+
+
 
 //creating a custom hook to access directly
 export const useAuth = ()=>useContext(AuthContext)
@@ -30,6 +33,8 @@ export const useAuth = ()=>useContext(AuthContext)
             return false
         }
     }
+
+     
 
 
     return(
