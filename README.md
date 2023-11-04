@@ -29,6 +29,8 @@ email VARCHAR(50) NOT NULL,
 description VARCHAR(100) NOT NULL,
 
 PRIMARY KEY(id));
+
+
 ------------------------------------------------------------------------
 
 Home Page of the Application
