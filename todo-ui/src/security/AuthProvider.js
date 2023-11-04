@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
+import { existsUserApi } from "../services/ApiServices";
 
 
 //creating a context
@@ -18,9 +19,9 @@ export const useAuth = ()=>useContext(AuthContext)
 
     const [isAuthenticated, setAuthenticated] = useState(false)
 
-    const validateUser = (username, password)=>{
+    const validateUser = (username)=>{
 
-        if(username === "rajeshgaddam" && password === "dummy")
+        if(existsUserApi(username))
         {
             // console.log("true")
             setUsername(username)

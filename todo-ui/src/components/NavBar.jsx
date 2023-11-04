@@ -15,9 +15,14 @@ const NavBar = () => {
         <p className='px-5 font-bold'>Todo Management</p>
       </div>
 
-      <div className='text-white h-16 items-center flex'>
-        <Link to="/" className='px-3 py-1 font-bold hover:bg-gray-600'>Home</Link>
-      </div>
+      {
+        authenticated && 
+
+        <div className='text-white h-16 items-center flex'>
+          <Link to={`/welcome/${context.username}`} className='px-3 py-1 font-bold hover:bg-gray-600'>Home</Link>
+        </div>
+      }
+      
 
     {
       authenticated && 
