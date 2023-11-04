@@ -57,4 +57,10 @@ public class TodoController {
     {
         return todoService.updateTodoForUserById(username, id, todo);
     }
+
+    @GetMapping("/todos/exists/{username}")
+    public boolean findUser(@PathVariable String username)
+    {
+        return todoService.findUser(username);
+    }
 }

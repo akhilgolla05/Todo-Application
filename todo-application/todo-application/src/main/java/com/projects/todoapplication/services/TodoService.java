@@ -17,4 +17,6 @@ public interface TodoService {
     void deleteAllTodosForUserById(String username, int id);
 
     Todo updateTodoForUserById(String username, int id, Todo todo);
+
+    boolean findUser(String username);
 }

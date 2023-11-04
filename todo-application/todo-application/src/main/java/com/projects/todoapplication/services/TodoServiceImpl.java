@@ -83,4 +83,14 @@ public class TodoServiceImpl implements TodoService{
 
         return updatedTodo;
     }
+
+    @Override
+    public boolean findUser(String username) {
+        List<Todo> byUserName = todoRepository.findByUserName(username);
+        if(!byUserName.isEmpty())
+        {
+            return true;
+        }
+        return false;
+    }
 }
