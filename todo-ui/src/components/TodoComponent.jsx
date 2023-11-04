@@ -9,6 +9,7 @@ import LogoutComponent from './LogoutComponent'
 import ErrorComponent from './ErrorComponent'
 import AuthProvider from '../security/AuthProvider'
 import AddTodo from './AddTodo'
+import EditEmployee from './EditEmployee'
 
 const TodoComponent = () => {
   return (
@@ -23,6 +24,7 @@ const TodoComponent = () => {
                 <Route path="/welcome/:username" element={<WelcomeComponent/>}/>
                 <Route path="/todos" element={<ListTodos/>}/>
                 <Route path="/add" element={<AddTodo/>}/>
+                <Route path="/updateTodo/:id" element={<EditEmployee/>}/>
                 <Route path="/logout" element={<LogoutComponent/>}/>
                 
                 <Route path="*" element={<ErrorComponent/>}/>

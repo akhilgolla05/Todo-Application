@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { retrieveTodos , deleteTodoApi} from '../services/ApiServices'
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ListTodos = () => {
 
@@ -37,6 +37,13 @@ const ListTodos = () => {
 
   }
 
+  const navigate = useNavigate()
+  const updateTodo =(id)=>{
+
+    // console.log(id)
+    navigate(`/updateTodo/${id}`)
+
+  }
 
 
   // useEffect(()=>console.log(todos),[todos])
@@ -72,7 +79,7 @@ const ListTodos = () => {
                     <td className='text-left font-normal px-2 py-2'>{todo.email}</td>
                     <td className='text-left font-normal px-2 py-2'>{todo.description}</td>
                     <td className='flex space-x-2'>
-                      <button className="bg-yellow-300 rounded pz-2 py-2 px-2 text-left">Update</button>
+                      <button className="bg-yellow-300 rounded pz-2 py-2 px-2 text-left" onClick={()=>updateTodo(todo.id)}>Update</button>
                       <button className="bg-red-500 rounded px-2 py-2 text-right" onClick={()=>deleteTodo(todo.id)}>Delete</button>
                     </td>
                 </tr>
