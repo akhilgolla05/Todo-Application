@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { retrieveTodoByIdApi } from '../services/ApiServices'
 import {updateTodoApi} from '../services/ApiServices'
+import { useAuth } from '../security/AuthProvider'
 const EditEmployee = () => {
 
     const [todo, setTodo] =  useState(
@@ -16,12 +17,14 @@ const EditEmployee = () => {
 
       const [prevTodo, setPrevTodo] =  useState(todo)
 
+      const context = useAuth()
+
       const {id} = useParams()
     //   console.log(id)
 
       useEffect(()=>{
         
-        retrieveTodoByIdApi(id)
+        retrieveTodoByIdApi(id,context.username)
         .then((response)=>{setTodo(response.data)
         setPrevTodo(response.data)})
         .catch((error)=>console.log(error))
@@ -41,9 +44,11 @@ const EditEmployee = () => {
 
     const navigate = useNavigate()
 
+    
+
     const editTodo = ()=>
     {
-        updateTodoApi(id, todo)
+        updateTodoApi(id, context.username, todo)
         .then(()=>{navigate("/todos")})
         .catch((error)=>console.log(error))
     }

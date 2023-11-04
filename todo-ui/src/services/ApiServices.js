@@ -8,17 +8,21 @@ export const apiClient = axios.create(
     
 )
 
-export const retrieveTodos = ()=>
-    apiClient.get("/todos/mohanmandi")
+export const retrieveTodos = (username)=>
+    apiClient.get(`/todos/${username}`)
 
-export const retrieveTodoByIdApi = (id)=>
-    apiClient.get(`/todos/mohanmandi/${id}`)
+export const retrieveTodoByIdApi = (id,username)=>
+    apiClient.get(`/todos/${username}/${id}`)
 
-export const deleteTodoApi = (id)=>
-    apiClient.delete(`/todos/mohanmandi/${id}`)
+export const deleteTodoApi = (id,username)=>
+    apiClient.delete(`/todos/${username}/${id}`)
 
 export const createTodoApi = (todo) =>
     apiClient.post("/todos",todo)
 
-export const updateTodoApi = (id, todo)=>
-    apiClient.put(`/todos/mohanmandi/${id}`,todo)
+export const updateTodoApi = (id,username, todo)=>
+    apiClient.put(`/todos/${username}/${id}`,todo)
+
+export const existsUserApi = (username)=>
+    apiClient.get(`todos/exists/${username}`)
+

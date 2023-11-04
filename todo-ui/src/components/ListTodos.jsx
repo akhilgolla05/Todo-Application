@@ -6,11 +6,13 @@ import { retrieveTodos , deleteTodoApi} from '../services/ApiServices'
 
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../security/AuthProvider'
 
 const ListTodos = () => {
 
   const [todos, setTodos] = useState([])
 
+  const context = useAuth()
 
 
   useEffect(
@@ -19,7 +21,7 @@ const ListTodos = () => {
   
   const refreshTodos = async ()=>
   {
-      retrieveTodos()
+      retrieveTodos(context.username)
       .then((response)=>{
         console.log(response.data)
         setTodos(response.data)
@@ -28,9 +30,11 @@ const ListTodos = () => {
       .catch((error)=>console.log(error))
   }
 
+  
+
   const deleteTodo = (id)=>
   {
-      deleteTodoApi(id)
+      deleteTodoApi(id,context.username)
       .then(()=>refreshTodos())
       .catch((error)=>console.log(error))
 
